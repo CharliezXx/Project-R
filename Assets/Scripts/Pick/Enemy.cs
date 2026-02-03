@@ -11,6 +11,7 @@ public class Enemy : CellData3D
     public float m_MaxHealth;
     public int MoveSpeed;
     private Vector3 TarGetMove;
+    private Vector3 ObjScale;
     private float m_CurrentHealth;
     private bool Is_Moving;
     private bool Is_Waiting;
@@ -26,45 +27,64 @@ public class Enemy : CellData3D
     public override void OnTrigger(Collider other, TriggerType Type)
     {
         base.OnTrigger(other, Type);
+        switch (Type) 
+        {
+            case TriggerType.Follow:
+                Follow();
+                break;
+            case TriggerType.Attack:
+                Attack();
+                break;
+        }
     }
 
 
+    Vector3 PlayerPos()
+    {
+        return GameManager.instance.PlayerController.transform.position;
+    }
 
 
 
     public void MoveTo(Vector3 coord)
     {
-    
+        TarGetMove = coord;
+        Is_Moving = true;
     }
 
 
     public void MoveAround()
     {
-
         float x = Random.Range(-SearchArea.x, SearchArea.x);
         float z = Random.Range(-SearchArea.z, SearchArea.z);
         x += m_BasePos.x;
         z += m_BasePos.z;
 
-        TarGetMove = new Vector3(x, 0, z); 
-        m_Pos = TarGetMove;
-        Is_Moving = true;
+        MoveTo(new Vector3(x, 0, z));
+    }
+
+    void Follow()
+    {
+        MoveTo(PlayerPos());
     }
 
     private void Start()
     {
         Rigidbody = GetComponent<Rigidbody>();
         SearchArea = m_SearchBox.bounds.extents;
+        ObjScale = transform.localScale;
     }
 
     private void Update()
     {
         m_Animator.SetBool("Moving",Is_Moving);
+        m_Pos = transform.position;
         if (!Is_Moving && !Is_Waiting)
         {
             MoveAround();
             StartCoroutine(Delay(5f));
         }
+        ShouldFlip();
     }
 
     private void FixedUpdate()
@@ -90,4 +110,17 @@ public class Enemy : CellData3D
        yield return new WaitForSeconds(RandomSec);
        Is_Waiting = false;
     }
+
+    void ShouldFlip()
+    {
+        if (m_Pos.x < TarGetMove.x) //กำลังจะเดินขวา
+        {
+            transform.localScale = new Vector3(-ObjScale.x, ObjScale.y, ObjScale.z);
+        }
+        else if (m_Pos.x > TarGetMove.x)
+        {
+            transform.localScale = ObjScale;
+        }
+    }
+
 }
