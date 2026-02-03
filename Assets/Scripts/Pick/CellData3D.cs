@@ -1,14 +1,21 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CellData3D : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other)
+    protected Vector3 m_Pos;
+    protected Vector3 m_BasePos;
+
+    public virtual void Init(Vector3 coord)
     {
-        if (other.CompareTag("Player"))
-        { 
-            PlayerEntered();
-        }
+        m_Pos = coord;
+        m_BasePos = coord;
     }
+
+    public virtual void OnTrigger(Collider other,TriggerType Type)
+    {
+
+    }
+
 
     public virtual void PlayerEntered()
     {

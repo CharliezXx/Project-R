@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance {  get; private set; }
     public PlayerController PlayerController;
+    public TerrainManager TerrainManager;
     public float m_PlayerMaxHp = 200f;
     public float HpSmoothSpeed;
     private float m_CurrentHp;
@@ -37,7 +38,13 @@ public class GameManager : MonoBehaviour
     {
         m_HpPanel = UIDoc.rootVisualElement.Q<VisualElement>("HpPanel");
         m_HpGauge = m_HpPanel.Q<VisualElement>("HpGauge");
+        StartNewGame();
+    }
+
+    void StartNewGame()
+    {
         ChangePlayerHp(m_PlayerMaxHp);
+        TerrainManager.init();
     }
 
     // Update is called once per frame

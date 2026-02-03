@@ -924,11 +924,11 @@ PlayerSettings:
   captureStartupLogs: {}
   activeInputHandler: 1
   windowsGamepadBackendHint: 0
-  cloudProjectId: d153f998-deae-4212-936b-f226d00fdb0e
+  cloudProjectId: 2f1b68cd-10eb-45e4-815d-01a80e2e73cc
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Project R
-  organizationId: bigmobile5956
+  projectName: Pro R
+  organizationId: 70273567-f321-4b7f-0000-1140637d2c2b
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
