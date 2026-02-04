@@ -3,18 +3,19 @@ using UnityEngine;
 
 public class Enemy : CellData3D
 {
-    [SerializeField] private SpriteRenderer SpriteRenderer;
-    [SerializeField] private Animator m_Animator;
+
+    protected Animator m_Animator;
     [SerializeField] private Collider m_SearchBox;
-    private Rigidbody Rigidbody;
+    protected Rigidbody Rigidbody;
     private Vector3 SearchArea;
     public float m_MaxHealth;
     public int MoveSpeed;
-    private Vector3 TarGetMove;
+    protected Vector3 TarGetMove;
     private Vector3 ObjScale;
-    private float m_CurrentHealth;
-    private bool Is_Moving;
-    private bool Is_Waiting;
+    protected float m_CurrentHealth;
+    protected bool Is_Moving;
+    protected bool Is_Attack;
+    protected bool Is_Waiting;
     
 
 
@@ -32,7 +33,7 @@ public class Enemy : CellData3D
             case TriggerType.Follow:
                 Follow();
                 break;
-            case TriggerType.Attack:
+            case TriggerType.CanAttackArea:
                 Attack();
                 break;
         }
@@ -65,12 +66,15 @@ public class Enemy : CellData3D
 
     void Follow()
     {
-        MoveTo(PlayerPos());
+
+            MoveTo(PlayerPos());
+
     }
 
     private void Start()
     {
         Rigidbody = GetComponent<Rigidbody>();
+        m_Animator = GetComponent<Animator>();
         SearchArea = m_SearchBox.bounds.extents;
         ObjScale = transform.localScale;
     }
@@ -79,7 +83,7 @@ public class Enemy : CellData3D
     {
         m_Animator.SetBool("Moving",Is_Moving);
         m_Pos = transform.position;
-        if (!Is_Moving && !Is_Waiting)
+        if (!Is_Moving && !Is_Waiting && !Is_Attack)
         {
             MoveAround();
             StartCoroutine(Delay(5f));
@@ -89,23 +93,28 @@ public class Enemy : CellData3D
 
     private void FixedUpdate()
     {
-        Vector3 NewPos = Vector3.MoveTowards(Rigidbody.position, TarGetMove, MoveSpeed * Time.fixedDeltaTime);
-        Rigidbody.MovePosition(NewPos);
+            Vector3 NewPos = Vector3.MoveTowards(Rigidbody.position, TarGetMove, MoveSpeed * Time.fixedDeltaTime);
+            Rigidbody.MovePosition(NewPos);
 
-        if (NewPos == TarGetMove)
-        {
-            Is_Moving = false;
-        }
+            if (NewPos == TarGetMove)
+            {
+                Is_Moving = false;
+            }
     }
 
-    public void Attack()
+    public virtual void Attack()
+    {
+        
+    }
+
+    public virtual void OnAttackFinished()
     {
 
     }
 
-    IEnumerator Delay(float Delay)
+    public IEnumerator Delay(float Delay)
     {
-        var RandomSec = Random.Range(Delay - 2, Delay);
+       var RandomSec = Random.Range(Delay - 2, Delay);
        Is_Waiting = true;
        yield return new WaitForSeconds(RandomSec);
        Is_Waiting = false;

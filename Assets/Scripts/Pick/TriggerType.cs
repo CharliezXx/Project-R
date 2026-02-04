@@ -3,7 +3,7 @@ using UnityEngine;
 public enum TriggerType
 {
     Follow,
-    Attack,
+    CanAttackArea,
     Interact,
     Collect,
 }

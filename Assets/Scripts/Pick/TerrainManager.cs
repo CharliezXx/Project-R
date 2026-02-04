@@ -31,7 +31,7 @@ public class TerrainManager : MonoBehaviour
 
     void SpawnEnamy()
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 0; i < 1; i++)
         {
 
         int RandomEnemyIndex = Random.Range(0, EnemyPrefab.Length);
