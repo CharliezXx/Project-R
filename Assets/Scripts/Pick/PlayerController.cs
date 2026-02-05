@@ -29,6 +29,16 @@ public class PlayerController : MonoBehaviour
         Scale = transform.localScale;
     }
 
+    public void EnableControl()
+    {
+        PlayerControls.Enable();
+    }
+
+    public void DisableControl()
+    {
+        PlayerControls.Disable();
+    }
+
     void Update()
     {
 

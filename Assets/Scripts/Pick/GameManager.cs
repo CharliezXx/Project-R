@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     private float m_TargetHpPercent;
     public UIDocument UIDoc;
     private VisualElement m_HpPanel;
+    private VisualElement m_GameOver;
     private VisualElement m_HpGauge;
 
     private void Awake()
@@ -31,12 +32,17 @@ public class GameManager : MonoBehaviour
         m_CurrentHp = Mathf.Clamp(m_CurrentHp, 0, m_PlayerMaxHp);
 
         m_TargetHpPercent = (m_CurrentHp / m_PlayerMaxHp)*100;
+        if (m_CurrentHp == 0)
+        {
+            GameOver();
+        }
     }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         m_HpPanel = UIDoc.rootVisualElement.Q<VisualElement>("HpPanel");
+        m_GameOver = UIDoc.rootVisualElement.Q<VisualElement>("GameOver");
         m_HpGauge = m_HpPanel.Q<VisualElement>("HpGauge");
         StartNewGame();
     }
@@ -45,6 +51,14 @@ public class GameManager : MonoBehaviour
     {
         ChangePlayerHp(m_PlayerMaxHp);
         TerrainManager.init();
+        PlayerController.EnableControl();
+        m_GameOver.style.display = DisplayStyle.None;
+    }
+
+    void GameOver()
+    {
+        PlayerController.DisableControl();
+        m_GameOver.style.display = DisplayStyle.Flex;
     }
 
     // Update is called once per frame
