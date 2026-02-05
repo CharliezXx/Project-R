@@ -25,19 +25,6 @@ public class Enemy : CellData3D
         m_CurrentHealth = m_MaxHealth;
     }
 
-    public override void OnTrigger(Collider other, TriggerType Type)
-    {
-        base.OnTrigger(other, Type);
-        switch (Type) 
-        {
-            case TriggerType.Follow:
-                Follow();
-                break;
-            case TriggerType.CanAttackArea:
-                Attack();
-                break;
-        }
-    }
 
 
     Vector3 PlayerPos()
@@ -64,11 +51,9 @@ public class Enemy : CellData3D
         MoveTo(new Vector3(x, 0, z));
     }
 
-    void Follow()
+    protected void Follow()
     {
-
-            MoveTo(PlayerPos());
-
+        MoveTo(PlayerPos());
     }
 
     private void Start()
@@ -77,16 +62,17 @@ public class Enemy : CellData3D
         m_Animator = GetComponent<Animator>();
         SearchArea = m_SearchBox.bounds.extents;
         ObjScale = transform.localScale;
+        Is_Attack = false;
     }
 
     private void Update()
     {
+
         m_Animator.SetBool("Moving",Is_Moving);
         m_Pos = transform.position;
         if (!Is_Moving && !Is_Waiting && !Is_Attack)
         {
             MoveAround();
-            StartCoroutine(Delay(5f));
         }
         ShouldFlip();
     }
@@ -99,7 +85,10 @@ public class Enemy : CellData3D
             if (NewPos == TarGetMove)
             {
                 Is_Moving = false;
+                StartCoroutine(Delay(3f));
             }
+
+
     }
 
     public virtual void Attack()
@@ -114,9 +103,8 @@ public class Enemy : CellData3D
 
     public IEnumerator Delay(float Delay)
     {
-       var RandomSec = Random.Range(Delay - 2, Delay);
        Is_Waiting = true;
-       yield return new WaitForSeconds(RandomSec);
+       yield return new WaitForSeconds(Delay);
        Is_Waiting = false;
     }
 

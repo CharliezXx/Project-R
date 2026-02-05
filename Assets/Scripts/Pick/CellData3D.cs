@@ -11,25 +11,4 @@ public class CellData3D : MonoBehaviour
         m_BasePos = coord;
     }
 
-    public virtual void OnTrigger(Collider other,TriggerType Type)
-    {
-
-    }
-
-
-    public virtual void PlayerEntered()
-    {
-
-    }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

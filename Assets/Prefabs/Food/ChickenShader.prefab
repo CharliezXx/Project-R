@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6270238364837472516}
   - component: {fileID: 5581449002899378486}
   - component: {fileID: 2941878394937412359}
-  - component: {fileID: 5557460794700844336}
+  - component: {fileID: 8076879726241474596}
   - component: {fileID: 6477365431891025057}
   m_Layer: 0
   m_Name: ChickenShader
@@ -107,7 +107,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FoodObject
   HpEffect: -50
---- !u!114 &5557460794700844336
+  Collect: {fileID: 8076879726241474596}
+--- !u!114 &8076879726241474596
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,7 +120,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c4c88bc34b46848883d2cfcfd43947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trigger
-  TriggerType: 3
 --- !u!65 &6477365431891025057
 BoxCollider:
   m_ObjectHideFlags: 0

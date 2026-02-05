@@ -560,11 +560,6 @@ MonoBehaviour:
       m_PostInfinity: 2
       m_RotationOrder: 4
   CustomBlends: {fileID: 0}
---- !u!95 &976907293 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 4056828436759229876, guid: 0d3b98b4a655b0349aadace08afe123d, type: 3}
-  m_PrefabInstance: {fileID: 1564078812}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1297215938
 GameObject:
   m_ObjectHideFlags: 0
@@ -836,6 +831,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 503981272045401558, guid: 0d3b98b4a655b0349aadace08afe123d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1536278576712940480, guid: 0d3b98b4a655b0349aadace08afe123d, type: 3}
+      propertyPath: m_Size.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1536278576712940480, guid: 0d3b98b4a655b0349aadace08afe123d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1536278576712940480, guid: 0d3b98b4a655b0349aadace08afe123d, type: 3}
+      propertyPath: m_Center.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2185250791087735798, guid: 0d3b98b4a655b0349aadace08afe123d, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2430630466789623229, guid: 0d3b98b4a655b0349aadace08afe123d, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.41885
@@ -879,14 +894,6 @@ PrefabInstance:
     - target: {fileID: 4397376134415942155, guid: 0d3b98b4a655b0349aadace08afe123d, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 6838830529090367875, guid: 0d3b98b4a655b0349aadace08afe123d, type: 3}
-      propertyPath: m_Animator
-      value: 
-      objectReference: {fileID: 976907293}
-    - target: {fileID: 6838830529090367875, guid: 0d3b98b4a655b0349aadace08afe123d, type: 3}
-      propertyPath: AttackSpeed
-      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

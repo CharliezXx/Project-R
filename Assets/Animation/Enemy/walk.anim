@@ -31,7 +31,7 @@ AnimationClip:
     - time: 1.2
       value: {fileID: -302377827, guid: 3678b32267ada854fb1cb398e21843c9, type: 3}
     attribute: m_Sprite
-    path: SnowTheme2_8
+    path: GreenWater
     classID: 212
     script: {fileID: 0}
     flags: 2
@@ -43,7 +43,7 @@ AnimationClip:
   m_ClipBindingConstant:
     genericBindings:
     - serializedVersion: 2
-      path: 3894681389
+      path: 3457347720
       attribute: 0
       script: {fileID: 0}
       typeID: 212
